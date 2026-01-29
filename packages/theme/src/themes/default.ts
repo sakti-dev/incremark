@@ -12,6 +12,7 @@ const colorGreen = generateColorSystem('#10b981')
 const colorRed = generateColorSystem('#ef4444')
 const colorOrange = generateColorSystem('#f97316')
 const colorCyan = generateColorSystem('#06b6d4')
+const colorTeal = generateColorSystem('#0D9488')
 const colorIndigo = generateColorSystem('#5776ff')
 
 // 中性色系列（调整后的颜色，增强对比度）
@@ -32,6 +33,7 @@ export const defaultTheme: DesignTokens = {
   // ============ 基础色系统 ============
   baseColors: {
     blue: colorBlue,
+    teal: colorTeal,
     purple: colorPurple,
     green: colorGreen,
     red: colorRed,
@@ -55,10 +57,20 @@ export const defaultTheme: DesignTokens = {
     },
     // ============ 品牌主题色（引用 indigo）============
     brand: {
-      primary: colorIndigo.primary,      // indigo[6]
-      primaryHover: colorIndigo.hover,   // indigo[7]
-      primaryActive: colorIndigo.active, // indigo[8]
-      primaryLight: colorIndigo.light    // indigo[2]
+      1: colorIndigo[1],
+      2: colorIndigo[2],
+      3: colorIndigo[3],
+      4: colorIndigo[4],
+      5: colorIndigo[5],
+      6: colorIndigo[6],
+      7: colorIndigo[7],
+      8: colorIndigo[8],
+      9: colorIndigo[9],
+      10: colorIndigo[10],
+      primary: colorIndigo.primary,            // indigo[6]
+      primaryHover: colorIndigo.hover,         // indigo[7]
+      primaryActive: colorIndigo.active,       // indigo[8]
+      primaryLight: colorIndigo.light           // indigo[2]
     },
     // ============ 语义化颜色（基于 neutral） ============
     text: {

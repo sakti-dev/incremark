@@ -41,6 +41,22 @@ export function hexToRgb(hex: string): RGB {
 }
 
 /**
+ * RGB 转空格分隔的三元组字符串
+ * { r: 13, g: 148, b: 136 } => '13 148 136'
+ */
+export function rgbToTriplet(rgb: RGB): string {
+  return `${Math.round(rgb.r)} ${Math.round(rgb.g)} ${Math.round(rgb.b)}`
+}
+
+/**
+ * HEX 转空格分隔的 RGB 三元组字符串
+ * '#0D9488' => '13 148 136'
+ */
+export function hexToRgbTriplet(hex: string): string {
+  return rgbToTriplet(hexToRgb(hex))
+}
+
+/**
  * RGB 转 HEX
  */
 export function rgbToHex(rgb: RGB): string {
@@ -192,13 +208,18 @@ export function generatePalette(baseColor: string): string[] {
 
 /**
  * 交互状态颜色
+ *
+ * 参照 Arco Design / Ant Design 标准：
+ * - hover = 色阶 5（比主色浅一阶）
+ * - primary = 色阶 6（基准色）
+ * - active = 色阶 7（比主色深一阶）
  */
 export interface ColorStates {
   /** 主色（色阶 6） */
   primary: string
-  /** hover 状态（色阶 7） */
+  /** hover 状态（色阶 5） */
   hover: string
-  /** active/pressed 状态（色阶 8） */
+  /** active/pressed 状态（色阶 7） */
   active: string
   /** 浅色背景（色阶 2） */
   light: string
@@ -237,10 +258,10 @@ export function generateBrand(primaryColor: string) {
   return {
     // 主色（索引 6）
     primary: palette[5],
-    // hover 状态（索引 7）
-    hover: palette[6],
-    // active/pressed 状态（索引 8）
-    active: palette[7],
+    // hover 状态（索引 5，比主色浅一阶）
+    hover: palette[4],
+    // active/pressed 状态（索引 7，比主色深一阶）
+    active: palette[6],
     // 浅色背景（索引 2）
     light: palette[1],
     // 完整色阶
@@ -280,10 +301,71 @@ export function generateColorSystem(primaryColor: string): ColorSystem {
     8: palette[7],
     9: palette[8],
     10: palette[9],
-    // 交互状态
+    // 交互状态（参照 Arco Design：hover=5, primary=6, active=7）
     primary: palette[5],
-    hover: palette[6],
-    active: palette[7],
+    hover: palette[4],
+    active: palette[6],
+    light: palette[1],
+    lighter: palette[0],
+    dark: palette[8]
+  }
+}
+
+/**
+ * RGB 三元组格式的颜色系统
+ *
+ * 值为空格分隔的 RGB 三元组（如 '13 148 136'），
+ * 适用于 CSS 变量 + UnoCSS 的 rgb() / opacity 场景
+ */
+export interface RGBColorSystem {
+  1: string
+  2: string
+  3: string
+  4: string
+  5: string
+  6: string
+  7: string
+  8: string
+  9: string
+  10: string
+  primary: string
+  hover: string
+  active: string
+  light: string
+  lighter: string
+  dark: string
+}
+
+/**
+ * 生成 RGB 三元组格式的颜色系统
+ *
+ * @param primaryColor 主色（hex）
+ * @returns RGB 三元组格式的颜色系统
+ *
+ * @example
+ * ```ts
+ * const system = generateColorSystemRGB('#0D9488')
+ * system.primary // => '13 148 136'
+ * system[1]      // => '230 248 246'
+ * ```
+ */
+export function generateColorSystemRGB(primaryColor: string): RGBColorSystem {
+  const palette = generatePalette(primaryColor).map(hexToRgbTriplet)
+
+  return {
+    1: palette[0],
+    2: palette[1],
+    3: palette[2],
+    4: palette[3],
+    5: palette[4],
+    6: palette[5],
+    7: palette[6],
+    8: palette[7],
+    9: palette[8],
+    10: palette[9],
+    primary: palette[5],
+    hover: palette[4],
+    active: palette[6],
     light: palette[1],
     lighter: palette[0],
     dark: palette[8]

@@ -68,6 +68,8 @@ export {
   Sender,
   SenderActionButton,
   SenderSubmitButton,
+  SenderFileButton,
+  SenderAttachments,
   useSender
 } from './sender';
 export type {
@@ -90,7 +92,7 @@ export type {
 
 // Suggestion
 export { Suggestion, SuggestionItem } from './suggestion';
-export type { SuggestionProps, SuggestionItem as SuggestionItemType } from './suggestion';
+export type { SuggestionProps, SuggestionItem as SuggestionItemData } from './suggestion';
 
 // ErrorMessage
 export { ErrorMessage } from './error-message';

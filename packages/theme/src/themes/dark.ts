@@ -30,6 +30,7 @@ export const darkTheme: DesignTokens = {
   // ============ 基础色系统 ============
   baseColors: {
     blue: defaultTheme.baseColors.blue,
+    teal: defaultTheme.baseColors.teal,
     indigo: darkColorIndigo,
     purple: darkColorPurple,
     green: darkColorGreen,
@@ -54,10 +55,20 @@ export const darkTheme: DesignTokens = {
     },
     // ============ 品牌主题色（暗色模式引用 indigo）============
     brand: {
-      primary: darkColorIndigo.primary,      // indigo[6]
-      primaryHover: darkColorIndigo.hover,   // indigo[7]
-      primaryActive: darkColorIndigo.active, // indigo[8]
-      primaryLight: darkColorIndigo.light    // indigo[2]
+      1: darkColorIndigo[1],
+      2: darkColorIndigo[2],
+      3: darkColorIndigo[3],
+      4: darkColorIndigo[4],
+      5: darkColorIndigo[5],
+      6: darkColorIndigo[6],
+      7: darkColorIndigo[7],
+      8: darkColorIndigo[8],
+      9: darkColorIndigo[9],
+      10: darkColorIndigo[10],
+      primary: darkColorIndigo.primary,            // indigo[6]
+      primaryHover: darkColorIndigo.hover,         // indigo[7]
+      primaryActive: darkColorIndigo.active,       // indigo[8]
+      primaryLight: darkColorIndigo[9]              // 暗色模式用深色调
     },
     // ============ 语义化颜色 ============
     text: {

@@ -37,6 +37,16 @@ export function createTheme(brandColor?: string): DesignTokens {
     color: {
       ...baseDefaultTheme.color,
       brand: {
+        1: colorSystem[1],
+        2: colorSystem[2],
+        3: colorSystem[3],
+        4: colorSystem[4],
+        5: colorSystem[5],
+        6: colorSystem[6],
+        7: colorSystem[7],
+        8: colorSystem[8],
+        9: colorSystem[9],
+        10: colorSystem[10],
         primary: colorSystem.primary,
         primaryHover: colorSystem.hover,
         primaryActive: colorSystem.active,
@@ -69,10 +79,20 @@ export function createDarkTheme(brandColor?: string): DesignTokens {
     color: {
       ...baseDarkTheme.color,
       brand: {
+        1: defaultDarkColor[1],
+        2: defaultDarkColor[2],
+        3: defaultDarkColor[3],
+        4: defaultDarkColor[4],
+        5: defaultDarkColor[5],
+        6: defaultDarkColor[6],
+        7: defaultDarkColor[7],
+        8: defaultDarkColor[8],
+        9: defaultDarkColor[9],
+        10: defaultDarkColor[10],
         primary: defaultDarkColor.primary,
         primaryHover: defaultDarkColor.hover,
         primaryActive: defaultDarkColor.active,
-        primaryLight: defaultDarkColor.light
+        primaryLight: defaultDarkColor[9]
       },
       interactive: {
         ...baseDarkTheme.color.interactive,

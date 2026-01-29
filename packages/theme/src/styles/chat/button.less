@@ -10,29 +10,39 @@
 @import '../variables.less';
 
 // ============ 颜色变量定义 ============
-// Primary (Blue)
-@btn-primary-6: var(--incremark-base-colors-blue-6);
-@btn-primary-7: var(--incremark-base-colors-blue-7);
-@btn-primary-2: var(--incremark-base-colors-blue-2);
-@btn-primary-3: var(--incremark-base-colors-blue-3);
+// 色阶用途：2=浅色背景, 3=浅色hover, 4=浅色active, 5=solid hover, 6=主色, 7=solid active
+//
+// Primary（使用品牌色阶）
+@btn-primary-2: @color-brand-2;
+@btn-primary-3: @color-brand-3;
+@btn-primary-4: @color-brand-4;
+@btn-primary-5: @color-brand-5;
+@btn-primary-6: @color-brand-6;
+@btn-primary-7: @color-brand-7;
 
 // Success (Green)
-@btn-success-6: var(--incremark-base-colors-green-6);
-@btn-success-7: var(--incremark-base-colors-green-7);
 @btn-success-2: var(--incremark-base-colors-green-2);
 @btn-success-3: var(--incremark-base-colors-green-3);
+@btn-success-4: var(--incremark-base-colors-green-4);
+@btn-success-5: var(--incremark-base-colors-green-5);
+@btn-success-6: var(--incremark-base-colors-green-6);
+@btn-success-7: var(--incremark-base-colors-green-7);
 
 // Warning (Orange)
-@btn-warning-6: var(--incremark-base-colors-orange-6);
-@btn-warning-7: var(--incremark-base-colors-orange-7);
 @btn-warning-2: var(--incremark-base-colors-orange-2);
 @btn-warning-3: var(--incremark-base-colors-orange-3);
+@btn-warning-4: var(--incremark-base-colors-orange-4);
+@btn-warning-5: var(--incremark-base-colors-orange-5);
+@btn-warning-6: var(--incremark-base-colors-orange-6);
+@btn-warning-7: var(--incremark-base-colors-orange-7);
 
 // Error (Red)
-@btn-error-6: var(--incremark-base-colors-red-6);
-@btn-error-7: var(--incremark-base-colors-red-7);
 @btn-error-2: var(--incremark-base-colors-red-2);
 @btn-error-3: var(--incremark-base-colors-red-3);
+@btn-error-4: var(--incremark-base-colors-red-4);
+@btn-error-5: var(--incremark-base-colors-red-5);
+@btn-error-6: var(--incremark-base-colors-red-6);
+@btn-error-7: var(--incremark-base-colors-red-7);
 
 // ============ 尺寸变量定义 ============
 @btn-height-xs: 24px;
@@ -134,37 +144,38 @@
   }
 
   // ============ Solid 变体 ============
+  // hover=浅一阶(5), default=主色(6), active=深一阶(7)
   &--solid {
     color: @color-text-inverse;
 
     &.im-button--primary {
       background: @btn-primary-6;
-      &:hover { background: @btn-primary-7; }
-      &:active { background: @btn-primary-7; filter: brightness(0.95); }
+      &:hover { background: @btn-primary-5; }
+      &:active { background: @btn-primary-7; }
     }
 
     &.im-button--neutral {
       background: @color-neutral-8;
-      &:hover { background: @color-neutral-9; }
-      &:active { background: @color-neutral-9; filter: brightness(0.95); }
+      &:hover { background: @color-neutral-7; }
+      &:active { background: @color-neutral-9; }
     }
 
     &.im-button--success {
       background: @btn-success-6;
-      &:hover { background: @btn-success-7; }
-      &:active { background: @btn-success-7; filter: brightness(0.95); }
+      &:hover { background: @btn-success-5; }
+      &:active { background: @btn-success-7; }
     }
 
     &.im-button--warning {
       background: @btn-warning-6;
-      &:hover { background: @btn-warning-7; }
-      &:active { background: @btn-warning-7; filter: brightness(0.95); }
+      &:hover { background: @btn-warning-5; }
+      &:active { background: @btn-warning-7; }
     }
 
     &.im-button--error {
       background: @btn-error-6;
-      &:hover { background: @btn-error-7; }
-      &:active { background: @btn-error-7; filter: brightness(0.95); }
+      &:hover { background: @btn-error-5; }
+      &:active { background: @btn-error-7; }
     }
   }
 
@@ -209,6 +220,7 @@
   }
 
   // ============ Soft 变体 ============
+  // default=2, hover=3, active=4
   &--soft {
     border-color: transparent;
 
@@ -216,7 +228,7 @@
       color: @btn-primary-6;
       background: @btn-primary-2;
       &:hover { background: @btn-primary-3; }
-      &:active { background: @btn-primary-3; filter: brightness(0.97); }
+      &:active { background: @btn-primary-4; }
     }
 
     &.im-button--neutral {
@@ -230,32 +242,33 @@
       color: @btn-success-6;
       background: @btn-success-2;
       &:hover { background: @btn-success-3; }
-      &:active { background: @btn-success-3; filter: brightness(0.97); }
+      &:active { background: @btn-success-4; }
     }
 
     &.im-button--warning {
       color: @btn-warning-6;
       background: @btn-warning-2;
       &:hover { background: @btn-warning-3; }
-      &:active { background: @btn-warning-3; filter: brightness(0.97); }
+      &:active { background: @btn-warning-4; }
     }
 
     &.im-button--error {
       color: @btn-error-6;
       background: @btn-error-2;
       &:hover { background: @btn-error-3; }
-      &:active { background: @btn-error-3; filter: brightness(0.97); }
+      &:active { background: @btn-error-4; }
     }
   }
 
   // ============ Subtle 变体 (soft + outline) ============
+  // default=2, hover=3, active=4
   &--subtle {
     &.im-button--primary {
       color: @btn-primary-6;
       background: @btn-primary-2;
       border-color: @btn-primary-6;
       &:hover { background: @btn-primary-3; }
-      &:active { background: @btn-primary-3; filter: brightness(0.97); }
+      &:active { background: @btn-primary-4; }
     }
 
     &.im-button--neutral {
@@ -271,7 +284,7 @@
       background: @btn-success-2;
       border-color: @btn-success-6;
       &:hover { background: @btn-success-3; }
-      &:active { background: @btn-success-3; filter: brightness(0.97); }
+      &:active { background: @btn-success-4; }
     }
 
     &.im-button--warning {
@@ -279,7 +292,7 @@
       background: @btn-warning-2;
       border-color: @btn-warning-6;
       &:hover { background: @btn-warning-3; }
-      &:active { background: @btn-warning-3; filter: brightness(0.97); }
+      &:active { background: @btn-warning-4; }
     }
 
     &.im-button--error {
@@ -287,7 +300,7 @@
       background: @btn-error-2;
       border-color: @btn-error-6;
       &:hover { background: @btn-error-3; }
-      &:active { background: @btn-error-3; filter: brightness(0.97); }
+      &:active { background: @btn-error-4; }
     }
   }
 
@@ -336,7 +349,7 @@
 
     &.im-button--primary {
       color: @btn-primary-6;
-      &:hover { color: @btn-primary-7; text-decoration: underline; }
+      &:hover { color: @btn-primary-5; text-decoration: underline; }
     }
 
     &.im-button--neutral {
@@ -346,17 +359,17 @@
 
     &.im-button--success {
       color: @btn-success-6;
-      &:hover { color: @btn-success-7; text-decoration: underline; }
+      &:hover { color: @btn-success-5; text-decoration: underline; }
     }
 
     &.im-button--warning {
       color: @btn-warning-6;
-      &:hover { color: @btn-warning-7; text-decoration: underline; }
+      &:hover { color: @btn-warning-5; text-decoration: underline; }
     }
 
     &.im-button--error {
       color: @btn-error-6;
-      &:hover { color: @btn-error-7; text-decoration: underline; }
+      &:hover { color: @btn-error-5; text-decoration: underline; }
     }
   }
 

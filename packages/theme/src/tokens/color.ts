@@ -40,6 +40,8 @@ export interface BaseColorPalette extends ColorStates {
 export interface BaseColors {
   /** 蓝色系 */
   blue: BaseColorPalette
+  /** 深青色系 */
+  teal: BaseColorPalette
   /** 紫色系 */
   purple: BaseColorPalette
   /** 绿色系 */
@@ -52,6 +54,7 @@ export interface BaseColors {
   cyan: BaseColorPalette
   /** 靛蓝 */
   indigo: BaseColorPalette
+
 }
 
 export interface ColorTokens {
@@ -80,6 +83,17 @@ export interface ColorTokens {
   }
   /** 品牌主题色 */
   brand: {
+    /** 色阶 1-10（从浅到深） */
+    1: string
+    2: string
+    3: string
+    4: string
+    5: string
+    6: string
+    7: string
+    8: string
+    9: string
+    10: string
     /** 主题色 - 用于链接、按钮等 */
     primary: string
     /** 主题色 hover 状态 */
