@@ -101,3 +101,7 @@ export type { ErrorMessageProps, ErrorType } from './error-message';
 // Welcome
 export { Welcome } from './welcome';
 export type { WelcomeProps } from './welcome';
+
+// MessageList
+export { MessageList } from './message-list';
+export type { MessageListProps, MessageListExposed } from './message-list';

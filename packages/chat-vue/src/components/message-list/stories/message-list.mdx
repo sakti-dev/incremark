@@ -1,0 +1,49 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as stories from './message-list.stories';
+
+<Meta of={stories} />
+
+# MessageList
+
+消息列表滚动容器，封装 `AutoScrollContainer`，提供自动滚动与手动滚动检测。
+
+MessageList 是一个**纯容器组件**，不关心消息如何渲染——消息渲染由外部通过默认 slot 决定。
+
+## 基础用法
+
+在 MessageList 内放置 MessageBubble 组件即可。
+
+<Canvas of={stories.Basic} />
+
+### Props
+
+<Controls of={stories.Basic} />
+
+## 自动滚动
+
+新消息到达时自动滚动到底部。用户手动向上滚动后暂停自动滚动，滚回底部后恢复。
+
+<Canvas of={stories.AutoScroll} />
+
+## API
+
+### Props
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| autoScroll | `boolean` | `true` | 是否启用自动滚动 |
+| autoScrollThreshold | `number` | `50` | 触发自动滚动的底部阈值（像素） |
+| scrollBehavior | `ScrollBehavior` | `'instant'` | 滚动行为（`instant` / `smooth` / `auto`） |
+
+### Exposed Methods
+
+| 方法 | 类型 | 说明 |
+|------|------|------|
+| scrollToBottom | `() => void` | 强制滚动到底部 |
+| isUserScrolledUp | `() => boolean` | 是否用户手动向上滚动了 |
+
+### Slots
+
+| 插槽 | 说明 |
+|------|------|
+| default | 消息内容，通常放置 MessageBubble 组件 |
