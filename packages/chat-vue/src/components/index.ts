@@ -60,8 +60,8 @@ export type {
 } from './message-actions';
 
 // Base Components
-export { ImButton, ImTooltip } from './base';
-export type { ImButtonProps, ImTooltipProps } from './base';
+export { ImButton, ImTooltip, ImDropdown } from './base';
+export type { ImButtonProps, ImTooltipProps, ImDropdownProps, DropdownItem } from './base';
 
 // Sender
 export {

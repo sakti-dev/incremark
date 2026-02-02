@@ -3,6 +3,7 @@
  */
 
 import type { Ref } from 'vue';
+import type { Editor, AnyExtension } from '@tiptap/vue-3';
 
 /**
  * 提交类型
@@ -38,6 +39,8 @@ export interface SenderMessage {
   content: string;
   /** 附件列表 */
   attachments?: SenderAttachment[];
+  /** 元数据（如 mention 引用的档案数据等） */
+  metadata?: Record<string, unknown>;
 }
 
 /**
@@ -60,6 +63,8 @@ export interface SenderProps {
   maxHeight?: string | number;
   /** 提交方式 */
   submitType?: SenderSubmitType;
+  /** 额外的 TipTap 扩展，透传给 SenderInput */
+  extensions?: AnyExtension[];
   /** 是否在发送后清空输入框 */
   clearOnSubmit?: boolean;
   /** 接受的文件类型，如 'image/*,.pdf' */
@@ -129,6 +134,8 @@ export interface SenderInputProps {
   maxHeight?: string | number;
   /** 提交方式 */
   submitType?: SenderSubmitType;
+  /** 额外的 TipTap 扩展 */
+  extensions?: AnyExtension[];
 }
 
 /**
@@ -179,4 +186,6 @@ export interface SenderInputRef {
   clear: () => void;
   /** 插入文本 */
   insert: (text: string) => void;
+  /** 获取 TipTap Editor 实例 */
+  getEditor: () => Editor | undefined;
 }

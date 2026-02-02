@@ -1,3 +1,5 @@
+import type { AnyExtension } from '@tiptap/vue-3';
+
 /**
  * 提交类型
  * - enter: 按 Enter 发送，Shift+Enter 换行
@@ -13,6 +15,8 @@ export interface SenderInputProps {
   maxHeight?: string | number;
   /** 提交方式 */
   submitType?: SenderSubmitType;
+  /** 额外的 TipTap 扩展，会与内置扩展合并 */
+  extensions?: AnyExtension[];
 }
 
 export interface SenderInputEmits {

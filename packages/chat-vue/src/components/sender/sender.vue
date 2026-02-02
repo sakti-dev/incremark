@@ -102,6 +102,9 @@ provide<SenderContext>('sender', {
   fileConfig: fileConfig.value,
 });
 
+// 获取 TipTap Editor 实例
+const getEditor = () => inputRef.value?.getEditor();
+
 // 暴露方法
 defineExpose({
   focus,
@@ -110,6 +113,7 @@ defineExpose({
   submit,
   addFiles,
   removeAttachment,
+  getEditor,
 });
 </script>
 
@@ -137,6 +141,7 @@ defineExpose({
         :disabled="props.disabled || props.loading"
         :max-height="props.maxHeight"
         :submit-type="props.submitType"
+        :extensions="props.extensions"
         @submit="handleInputSubmit"
         @paste-file="handlePasteFile"
       />

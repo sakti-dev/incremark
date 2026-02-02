@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<MessageBubbleProps>(), {
   placement: 'start',
   variant: 'filled',
   shape: 'default',
+  fillTheme: 'default',
   width: 'block',
   loading: false,
   streaming: false
@@ -32,7 +33,8 @@ const rootClass = computed(() => [
 const contentClass = computed(() => [
   bem('content'),
   bem('content', props.variant),
-  bem('content', props.shape)
+  bem('content', props.shape),
+  props.fillTheme !== 'default' && bem('content', props.fillTheme)
 ])
 </script>
 

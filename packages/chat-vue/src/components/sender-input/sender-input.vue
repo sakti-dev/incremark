@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<SenderInputProps>(), {
   disabled: false,
   bordered: false,
   submitType: 'enter',
+  extensions: () => [],
 });
 
 const emit = defineEmits<SenderInputEmits>();
@@ -97,6 +98,7 @@ const editor = useEditor({
       showOnlyWhenEditable: false,
     }),
     UndoRedo,
+    ...(props.extensions || []),
   ],
   onFocus: (options) => {
     emit('focus', options.event);
@@ -177,11 +179,14 @@ const insert = (text: string) => {
   editor.value?.commands.insertContent(text);
 };
 
+const getEditor = () => editor.value;
+
 defineExpose({
   focus,
   blur,
   clear,
   insert,
+  getEditor,
 });
 </script>
 

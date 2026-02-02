@@ -31,6 +31,15 @@ export interface MessageBubbleProps {
   width?: 'auto' | 'block'
 
   /**
+   * 填充主题（仅 variant="filled" 时生效）
+   * - default: 默认灰色背景
+   * - primary: 品牌主色背景 + 反色文字
+   *
+   * @default 'default'
+   */
+  fillTheme?: 'default' | 'primary'
+
+  /**
    * 加载状态
    */
   loading?: boolean
