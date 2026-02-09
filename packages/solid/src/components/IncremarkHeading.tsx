@@ -13,7 +13,7 @@ export const IncremarkHeading: Component<IncremarkHeadingProps> = (props) => {
   const tag = () => `h${props.node.depth}`
 
   return (
-    <Dynamic component={tag()} class={`incremark-heading h${props.node.depth}`}>
+    <Dynamic component={tag()} class={`incremark-heading incremark-heading--h${props.node.depth}`}>
       <IncremarkInline nodes={props.node.children} />
     </Dynamic>
   )

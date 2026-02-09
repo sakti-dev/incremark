@@ -11,7 +11,7 @@ const tag = computed(() => `h${props.node.depth}`)
 </script>
 
 <template>
-  <component :is="tag" :class="`incremark-heading h${node.depth}`">
+  <component :is="tag" :class="`incremark-heading incremark-heading--h${node.depth}`">
     <IncremarkInline :nodes="node.children" />
   </component>
 </template>

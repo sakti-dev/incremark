@@ -26,7 +26,7 @@
   /**
    * CSS 类名
    */
-  const className = $derived(`incremark-heading h${node.depth}`)
+  const className = $derived(`incremark-heading incremark-heading--h${node.depth}`)
 </script>
 
 <svelte:element this={tag} class={className}>

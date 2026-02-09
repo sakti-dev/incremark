@@ -15,7 +15,7 @@ export const IncremarkHeading: React.FC<IncremarkHeadingProps> = ({ node }) => {
   const Tag = `h${node.depth}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
   return (
-    <Tag className={`incremark-heading h${node.depth}`}>
+    <Tag className={`incremark-heading incremark-heading--h${node.depth}`}>
       <IncremarkInline nodes={node.children as PhrasingContent[]} />
     </Tag>
   )
