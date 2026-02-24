@@ -66,6 +66,23 @@ export const IncremarkInline: Component<IncremarkInlineProps> = (props) => {
     return (node as unknown as MathNode).type === 'inlineMath'
   }
 
+  /**
+   * 获取引用定义（防御式：流式阶段定义可能短暂缺失或不完整）
+   */
+  function getReferenceDefinition(identifier?: string): { url: string; title?: string | null } | undefined {
+    if (!identifier) return undefined
+    const definition = (definations() as Record<string, { url?: string; title?: string | null }>)[identifier]
+    if (!definition?.url) return undefined
+    return definition as { url: string; title?: string | null }
+  }
+
+  /**
+   * 提取引用链接的可读文本（防御式处理空 children）
+   */
+  function getLinkReferenceText(node: LinkReference): string {
+    return ((node.children as any[]) ?? []).map(child => child?.value ?? '').join('')
+  }
+
   return (
     <>
       <For each={props.nodes}>
@@ -149,44 +166,56 @@ export const IncremarkInline: Component<IncremarkInlineProps> = (props) => {
 
             {/* 引用式图片（imageReference） */}
             <Show when={isImageReference(node)}>
+              {(() => {
+                const imageNode = node as ImageReference
+                const definition = getReferenceDefinition(imageNode.identifier)
+                return (
               <Show
-                when={definations()[(node as ImageReference).identifier]}
+                when={definition}
                 fallback={
                   <span class="incremark-image-ref-missing">
-                    ![{(node as ImageReference).alt}][{(node as ImageReference).identifier || (node as ImageReference).label}]
+                    ![{imageNode.alt}][{imageNode.identifier || imageNode.label}]
                   </span>
                 }
               >
                 <img
                   class="incremark-image incremark-reference-image"
-                  src={definations()[(node as ImageReference).identifier].url}
-                  alt={(node as ImageReference).alt || ''}
-                  title={definations()[(node as ImageReference).identifier].title || undefined}
+                  src={definition!.url}
+                  alt={imageNode.alt || ''}
+                  title={definition!.title || undefined}
                   loading="lazy"
                 />
               </Show>
+                )
+              })()}
             </Show>
 
             {/* 引用式链接（linkReference） */}
             <Show when={isLinkReference(node)}>
+              {(() => {
+                const linkNode = node as LinkReference
+                const definition = getReferenceDefinition(linkNode.identifier)
+                return (
               <Show
-                when={definations()[(node as LinkReference).identifier]}
+                when={definition}
                 fallback={
                   <span class="incremark-link-ref-missing">
-                    [{((node as LinkReference).children as any[]).map((c: any) => c.value).join('')}][{(node as LinkReference).identifier || (node as LinkReference).label}]
+                    [{getLinkReferenceText(linkNode)}][{linkNode.identifier || linkNode.label}]
                   </span>
                 }
               >
                 <a
                   class="incremark-link incremark-reference-link"
-                  href={definations()[(node as LinkReference).identifier].url}
-                  title={definations()[(node as LinkReference).identifier].title || undefined}
+                  href={definition!.url}
+                  title={definition!.title || undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <IncremarkInline nodes={((node as LinkReference).children as PhrasingContent[])} />
+                  <IncremarkInline nodes={(linkNode.children as PhrasingContent[])} />
                 </a>
               </Show>
+                )
+              })()}
             </Show>
 
             {/* 脚注引用（footnoteReference） */}
